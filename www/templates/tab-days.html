@@ -1,0 +1,12 @@
+<ion-view view-title="Daily Deals">
+  <ion-content style="background: #e8ebf1;" class="padding">
+    <div class="list card">
+    <ion-list>
+        <ion-item ng-repeat="day in days" href="#/tab/day/{{day.id}}" class="item-icon-right">
+            {{ day.name }}
+            <i class="icon ion-ios-arrow-forward"></i>
+        </ion-item>
+    </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

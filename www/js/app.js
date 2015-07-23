@@ -83,24 +83,34 @@ angular.module('starter', [
   })
 
   // Ionic User tab
-  .state('tab.user', {
-    url: '/user',
+  .state('tab.locations', {
+    url: '/locations',
     views: {
-      'tab-user': {
-        templateUrl: 'templates/tab-user.html',
-        controller: 'UserCtrl'
+      'tab-locations': {
+        templateUrl: 'templates/tab-locations.html',
+        controller: 'LocationsCtrl'
       }
     }
   })
 
   // Ionic Analytics tab
-  .state('tab.analytics', {
-    url: '/analytics',
+  .state('tab.days', {
+    url: '/days',
     views: {
-      'tab-analytics': {
-        templateUrl: 'templates/tab-analytics.html',
-        controller: 'AnalyticsCtrl'
+      'tab-days': {
+        templateUrl: 'templates/tab-days.html',
+        controller: 'DaysCtrl'
       }
+    }
+  })
+  
+  .state('tab.day', {
+    url: '/day/:dayId',
+    views: {
+        'tab-days': {
+            templateUrl: 'templates/day.html',
+            controller: 'DayDetailCtrl'
+        }
     }
   });
 
