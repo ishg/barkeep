@@ -24,7 +24,9 @@ angular.module('starter.services', [])
             });
         },
         get: function(dayId){
-            //return days[dayId-1];
+            return days.filter(function(obj){
+                return obj.id == dayId;
+            })[0];
         }
     }
 })
@@ -54,7 +56,9 @@ angular.module('starter.services', [])
             });
         },
         get: function(locId){
-            //locations.fin
+            return locations.filter(function(obj){
+                return obj.id == locId;
+            })[0];
         }
     }
 })

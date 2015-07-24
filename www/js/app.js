@@ -5,6 +5,7 @@ Parse.initialize("euJpAsFf8PjtGTNY0104aq6iLq4YvlGp4TNHhrhl", "3GUvRwkxNXuMFA3x6G
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', [
   'ionic',
   'ngCordova',
@@ -14,6 +15,24 @@ angular.module('starter', [
   'starter.controllers',
   'starter.services'
 ])
+
+.run(function($ionicPlatform, $ionicPopup) {
+    $ionicPlatform.ready(function() {
+        if(window.Connection) {
+            if(navigator.connection.type == Connection.NONE) {
+                $ionicPopup.confirm({
+                    title: "Internet Disconnected",
+                    content: "The internet is disconnected on your device."
+                })
+                .then(function(result) {
+                    if(!result) {
+                        ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
+    });
+})
 
 .config(['$ionicAppProvider', function($ionicAppProvider) {
   // Identify app

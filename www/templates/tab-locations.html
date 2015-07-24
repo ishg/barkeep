@@ -1,9 +1,22 @@
 <ion-view view-title="Locations">
   <ion-content style="background: #e8ebf1;" class="padding">
+    <div class="button-bar">
+      <a ng-click="sortByName()" class="button button-dark button-small">
+      Name
+      <i ng-show="nameAscending" class="icon ion-ios-arrow-down"></i>
+      <i ng-show="nameDescending" class="icon ion-ios-arrow-up"></i>
+      </a>
+      <a class="button button-dark button-small">
+        Distance
+        <i ng-show="distanceAscending" class="icon ion-ios-arrow-down"></i>
+        <i ng-show="distanceDescending" class="icon ion-ios-arrow-up"></i>
+      </a>
+    </div>
     <div class="list card">
     <ion-list>
         <ion-item ng-repeat="location in locations" href="#/tab/location/{{location.id}}" class="item-icon-right">
-            {{ location.name }}
+            <h2>{{ location.name }}</h2>
+            <p>{{ location.address }}</p>
             <i class="icon ion-ios-arrow-forward"></i>
         </ion-item>
     </ion-list>
