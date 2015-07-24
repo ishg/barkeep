@@ -4,8 +4,13 @@ angular.module('starter.controllers', [])
   // Nothing to see here.
 })
 
-.controller('LocationsCtrl', function($scope, $rootScope, $ionicUser) {
-  
+.controller('LocationsCtrl', function($scope, $rootScope, Locations ) {
+    $scope.locations = Locations.all();
+    console.log($scope.locations);
+})
+
+.controller('LocationDetailCtrl', function($scope, $stateParams, Locations){
+    $scope.location = Locations.get($stateParams.locId);
 })
 
 .controller('DaysCtrl', function($scope, Days) {
@@ -36,3 +41,100 @@ angular.module('starter.controllers', [])
         }
     }
 })
+
+.factory('Locations', function(){
+    var locations = [
+        {
+            id: 1,
+            name: 'Bier Stube',
+            address: '',
+            description: ''
+        },
+        {
+            id: 2,
+            name: "Eddie George's Grill",
+            address: '',
+            description: ''
+        },
+        {
+            id: 3,
+            name: 'Ethyl & Tank',
+            address: '',
+            description: ''
+        },
+        {
+            id: 4,
+            name: 'Formaggio',
+            address: '',
+            description: ''
+        },
+        {
+            id: 5,
+            name: '4th Street Bar & Grill',
+            address: '',
+            description: ''
+        },
+        {
+            id: 6,
+            name: "Ledo's Tavern",
+            address: '',
+            description: ''
+        },
+        {
+            id: 7,
+            name: 'Mad Mex',
+            address: '',
+            description: ''
+        },
+        {
+            id: 8,
+            name: 'Out-R-Inn',
+            address: '',
+            description: ''
+        },
+        {
+            id: 9,
+            name: "Skully's",
+            address: '',
+            description: ''
+        },
+        {
+            id: 10,
+            name: 'Suzie-Cue',
+            address: '',
+            description: ''
+        },
+        {
+            id: 11,
+            name: 'The Little Bar',
+            address: '',
+            description: ''
+        },
+        {
+            id: 12,
+            name: 'Ugly Tuna',
+            address: '',
+            description: ''
+        },
+        {
+            id: 13,
+            name: 'Village Idiot',
+            address: '',
+            description: ''
+        }
+    ];
+    
+    return{
+        all: function(){
+            return locations;
+        },
+        get: function(locId){
+            return locations[locId-1];
+        }
+    }
+})
+
+.factory('Specials', function(){
+   
+    
+});

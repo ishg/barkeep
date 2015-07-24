@@ -92,6 +92,16 @@ angular.module('starter', [
       }
     }
   })
+  
+  .state('tab.location', {
+      url: '/location/:locId',
+      views: {
+          'tab-locations':{
+              templateUrl: 'templates/location.html',
+              controller: 'LocationDetailCtrl'
+          }
+      }
+  })
 
   // Ionic Analytics tab
   .state('tab.days', {

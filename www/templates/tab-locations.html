@@ -1,5 +1,12 @@
 <ion-view view-title="Locations">
   <ion-content style="background: #e8ebf1;" class="padding">
-    
+    <div class="list card">
+    <ion-list>
+        <ion-item ng-repeat="location in locations" href="#/tab/location/{{location.id}}" class="item-icon-right">
+            {{ location.name }}
+            <i class="icon ion-ios-arrow-forward"></i>
+        </ion-item>
+    </ion-list>
+    </div>
   </ion-content>
 </ion-view>
