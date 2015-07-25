@@ -44,6 +44,7 @@ angular.module('starter.services', [])
                       var object = {};
                       object.name = results[i].attributes.name;
                       object.address = results[i].attributes.address;
+                      object.coordinates = results[i].attributes.coordinates;
                       object.id = results[i].id;
                       locations.push(object);
                     }
