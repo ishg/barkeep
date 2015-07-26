@@ -1,7 +1,25 @@
 angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $rootScope, $ionicPush, $ionicUser) {
-  // Nothing to see here.
+  
+  $scope.addItem = function(special){
+    //console.log(special);
+    var Special = Parse.Object.extend('Special');
+    var s = new Special();
+    var day = 
+
+    s.save({
+      description: special.description,
+      location: special.location,
+      day: special.day
+    }).then(function(obj){
+      console.log(obj);
+    },function(err){
+      console.log(err);
+    });
+    special.description = "";
+
+  }
 })
 
 .controller('LocationsCtrl', function($scope, $rootScope, $cordovaGeolocation,LocationsService, $ionicLoading ) {
@@ -115,7 +133,9 @@ angular.module('starter.controllers', [])
 
 .controller('LocationDetailCtrl', function($scope, $stateParams, LocationsService){
     $scope.location = LocationsService.get($stateParams.locId);
-    console.log($scope.location);
+    
+    $scope.specials = LocationsService.getSpecials($stateParams.locId);
+
 })
 
 .controller('DaysCtrl', function($scope, DaysService, $ionicLoading) {
@@ -134,3 +154,7 @@ angular.module('starter.controllers', [])
 .controller('DayDetailCtrl', function($scope, $stateParams, DaysService){
     $scope.day = DaysService.get($stateParams.dayId);
 });
+
+//lhIrMZguWA
+
+//q1DvlEXzP8
