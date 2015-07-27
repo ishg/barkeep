@@ -43,10 +43,11 @@ angular.module('starter.services', [])
           success: function(results) {
             for (var i = 0; i < results.length; i++) {
               var object = {};
-              object.name = results[i].attributes.name;
-              object.address = results[i].attributes.address;
-              object.coordinates = results[i].attributes.coordinates;
+              object.name = results[i].get('name');
+              object.address = results[i].get('address');
+              object.coordinates = results[i].get('coordinates');
               object.id = results[i].id;
+              object.specials = results[i].get('specials');
               locations.push(object);
             }
             resolve(locations);
@@ -62,9 +63,18 @@ angular.module('starter.services', [])
         return obj.id == locId;
       })[0];
     },
-    getSpecials: function(locId){
+    getSpecials: function(loc){
       return new Promise(function(resolve, reject){
-        //Parse Query for Data
+        var query = new Parse.Query(Parse.Object.extend("Special"));
+        query.containedIn("objectId", loc.specials);
+        query.find({
+          success: function(results){
+            resolve(results);
+          },
+          error: function(err){
+            reject("Error: " + error.code + " " + error.message);
+          }
+        })
       })
     }
   }

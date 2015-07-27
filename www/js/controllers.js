@@ -204,10 +204,21 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LocationDetailCtrl', function($scope, $stateParams, LocationsService){
+.controller('LocationDetailCtrl', function($scope, $stateParams, LocationsService, $ionicLoading){
     $scope.location = LocationsService.get($stateParams.locId);
     
-    $scope.specials = LocationsService.getSpecials($stateParams.locId);
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    
+    LocationsService.getSpecials($scope.location).then(function(result){
+      $scope.specials = result;
+      console.log($scope.specials);
+      $ionicLoading.hide();
+      computeDistances($scope.currentLocation);
+    }, function(err){
+      console.log(err);
+    });;
 
 })
 

@@ -7,12 +7,16 @@
     		<input type="text" placeholder="Search">
     	</label>
     </div>
-    <div class="card">
+    <div class="card" ng-repeat="special in specials">
     	<div class="item item-divider card-day-title">
     		Monday
     	</div>
     	<div class="item item-text-wrap">
-    		This is a basic card wit some text
+    		<ul class="list">
+          <li class="item" ng-repeat="item in special.attributes.items">
+            {{item}}
+          </li>
+        </ul>
     	</div>
     </div>
   </ion-content>
