@@ -2,22 +2,95 @@ angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $rootScope, $ionicPush, $ionicUser) {
   
+  //lhIrMZguWA
+
+  //q1DvlEXzP8  
+  $scope.special = {
+    day: "lhIrMZguWA",
+    location: "q1DvlEXzP8"
+  }
+  
+  $scope.getNextDay = function(day){
+    var days = [
+      'lhIrMZguWA', 
+      '4xwqTPGQyU', 
+      'MKFglYWIZE', 
+      'Woc7cp3oLM', 
+      'vR1Uc9yGUz', 
+      '3ImsDYPCy1', 
+      'pW8AOr9BnK'
+    ];
+    
+    var i = days.indexOf(day);
+    i = i+1;
+    if(i == 7){
+      i = 0;
+    }
+    return days[i];
+    
+  }
+  
   $scope.addItem = function(special){
     //console.log(special);
     var Special = Parse.Object.extend('Special');
     var s = new Special();
-    var day = 
 
     s.save({
-      description: special.description,
-      location: special.location,
-      day: special.day
+      items: special.description.split(", "),
     }).then(function(obj){
-      console.log(obj);
-    },function(err){
+      var query = new Parse.Query(Parse.Object.extend("Location"));
+      query.get(special.location, {
+        success: function(loc) {
+          var specials = loc.get('specials');
+          if(specials){
+            specials.push(obj.id);
+          }else{
+            specials = [];
+            specials.push(obj.id);
+          }
+          loc.set('specials', specials);
+          loc.save().then(function(obj){
+            console.log(obj);
+          }, function(err){
+            console.log(err);
+          })
+          
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+      
+      var query2 = new Parse.Query(Parse.Object.extend("Day"));
+      query2.get(special.day, {
+        success: function(loc) {
+          var specials = loc.get('specials');
+          if(specials){
+            specials.push(obj.id);
+          }else{
+            specials = [];
+            specials.push(obj.id);
+          }
+          loc.set('specials', specials);
+          loc.save().then(function(obj){
+            console.log(obj);
+          }, function(err){
+            console.log(err);
+          })
+          special.day = $scope.getNextDay(special.day);
+          
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+      
+      
+    }, function(err){
       console.log(err);
     });
     special.description = "";
+    
 
   }
 })
@@ -155,6 +228,3 @@ angular.module('starter.controllers', [])
     $scope.day = DaysService.get($stateParams.dayId);
 });
 
-//lhIrMZguWA
-
-//q1DvlEXzP8
