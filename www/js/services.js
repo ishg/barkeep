@@ -7,6 +7,7 @@ angular.module('starter.services', [])
     all: function(){
       return new Promise(function(resolve,reject){
         var query = new Parse.Query(Parse.Object.extend("Day"));
+        query.ascending("createdAt");
         query.find({
           success: function(results) {
             for (var i = 0; i < results.length; i++) {

@@ -10,8 +10,8 @@ angular.module('starter', [
   'ionic',
   'ngCordova',
   'ionic.service.core',
-  'ionic.service.push',
-  'ionic.service.deploy',
+  //'ionic.service.push',
+  //'ionic.service.deploy',
   'starter.controllers',
   'starter.services'
 ])
@@ -46,7 +46,7 @@ angular.module('starter', [
   });
 }])
 
-.run(function($rootScope, $ionicDeploy, $ionicPlatform, $cordovaStatusbar) {
+.run(function($rootScope, $ionicPlatform, $cordovaStatusbar) {
 
   $ionicPlatform.ready(function() {
 
@@ -67,10 +67,10 @@ angular.module('starter', [
     };
 
     // Watch Ionic Deploy service for new code
-    $ionicDeploy.watch($rootScope.updateOptions).then(function() {}, function() {}, function(hasUpdate) {
-      $rootScope.lastChecked = new Date();
-      console.log('WATCH RESULT', hasUpdate);
-    });
+    // $ionicDeploy.watch($rootScope.updateOptions).then(function() {}, function() {}, function(hasUpdate) {
+    //   $rootScope.lastChecked = new Date();
+    //   console.log('WATCH RESULT', hasUpdate);
+    // });
   });
 })
 

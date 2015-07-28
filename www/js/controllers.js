@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, $rootScope, $ionicPush, $ionicUser) {
+.controller('HomeCtrl', function($scope, $rootScope, $ionicUser) {
   
   //lhIrMZguWA
 
@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
   $scope.special = {
     day: "lhIrMZguWA",
     location: "q1DvlEXzP8"
-  }
+  };
   
   $scope.getNextDay = function(day){
     var days = [
@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
     }
     return days[i];
     
-  }
+  };
   
   $scope.addItem = function(special){
     //console.log(special);
@@ -53,7 +53,7 @@ angular.module('starter.controllers', [])
             console.log(obj);
           }, function(err){
             console.log(err);
-          })
+          });
           
         },
         error: function(error) {
@@ -76,7 +76,7 @@ angular.module('starter.controllers', [])
             console.log(obj);
           }, function(err){
             console.log(err);
-          })
+          });
           special.day = $scope.getNextDay(special.day);
           
         },
@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
     special.description = "";
     
 
-  }
+  };
 })
 
 .controller('LocationsCtrl', function($scope, $rootScope, $cordovaGeolocation,LocationsService, $ionicLoading ) {
@@ -110,7 +110,7 @@ angular.module('starter.controllers', [])
         $scope.currentLocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }
+        };
         
         //alert("Lat: "+ $scope.currentLocation.lat + ", Long: "+ $scope.currentLocation.lng);
         
@@ -148,7 +148,7 @@ angular.module('starter.controllers', [])
     $scope.locations.forEach(function(obj){
       obj.distance = Math.floor(getDistance(curPos, obj.coordinates.toJSON()) * 0.00062137 *100) / 100; //Convert to miles
     });
-  }
+  };
   
   
   /*
@@ -218,7 +218,7 @@ angular.module('starter.controllers', [])
       computeDistances($scope.currentLocation);
     }, function(err){
       console.log(err);
-    });;
+    });
 
 })
 
